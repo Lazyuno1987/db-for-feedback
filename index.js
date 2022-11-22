@@ -5,7 +5,7 @@ require("dotenv").config()
 const {DB_HOST, PORT=3000}=process.env
 
 mongoose
-  .connect(DB_HOST)
+  .connect(DB_HOST, {useNewUrlParser:true,  useUnifiedTopology: true})
   .then(() => {
     console.log(`Database connection successful ${PORT}`);
     app.listen(PORT, ()=> console.log(`Server is running on port ${PORT}`))
