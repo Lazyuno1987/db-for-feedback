@@ -8,21 +8,24 @@ const contactsSchema = require("../../models/contact");
 
 
 router.post("/", async (req, res, next) => {
+
   try {
     const { error } = contactsSchema.validate(req.body);
-    if (error) {
+      if (error) {
+         
       error.status = 400;
       throw error;
     }
     const newContact = await Contact.create(req.body);
     res.status(201).json({
-      status: "succes",
+      status: "success",
       code: 201,
       data: {
         result: newContact,
       },
     });
   } catch (error) {
+     
     next(error);
   }
 });
